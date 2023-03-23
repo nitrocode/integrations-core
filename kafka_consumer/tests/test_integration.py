@@ -374,6 +374,7 @@ def test_oauth_config(sasl_oauth_token_provider, check, expected_exception, kafk
         ),
     ],
 )
+@pytest.mark.skipif(LEGACY_CLIENT, reason='not implemented with python-kafka')
 def test_regex_consumer_groups(
     consumer_groups_regex_config,
     broker_offset_count,
