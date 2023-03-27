@@ -372,6 +372,17 @@ def test_oauth_config(sasl_oauth_token_provider, check, expected_exception, kafk
             'Using both monitor_unlisted_consumer_groups and consumer_groups or consumer_groups_regex',
             id="Mixing consumer_groups, consumer_groups_regex, and monitor_unlisted_consumer_groups",
         ),
+        pytest.param(
+            {
+                'consumer_groups': {'my_consumer': {'dc': []}},
+                'consumer_groups_regex': {'my_consumer': {'dc': []}},
+            },
+            2,
+            2,
+            2,
+            '',
+            id="Using the same consumer_groups and consumer_groups_regex values",
+        ),
     ],
 )
 @pytest.mark.skipif(LEGACY_CLIENT, reason='not implemented with python-kafka')
